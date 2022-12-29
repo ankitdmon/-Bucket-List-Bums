@@ -3,7 +3,12 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
+import postRoutes from './routes/posts.js';
+
 const app = express();
+
+// All the rootes of thge posts.js will be execute
+app.use('/posts', postRoutes);
 
 // Setting body parser for sending request properly
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
