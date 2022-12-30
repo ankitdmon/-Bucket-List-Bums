@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
+import { useDispatch} from 'react-redux';
 import FileBase from 'react-file-base64';
 
 import useStyles from './styles';
+import { createPost } from '../../actions/posts';
 
-const Form = ({ currentId, setCurrentId }) => {
+const Form = () => {
   const [postData, setPostData] = useState({
     creator: '',
     title: '',
@@ -12,12 +14,17 @@ const Form = ({ currentId, setCurrentId }) => {
     tags: '',
     selectedFile: '',
   });
-  
+
+  const dispatch = useDispatch();
   const classes = useStyles();
 
-  const clear = () => {};
+  const clear = () => {
+  };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    dispatch(createPost(postData));
   };
 
   return (
@@ -29,7 +36,7 @@ const Form = ({ currentId, setCurrentId }) => {
         onSubmit={handleSubmit}
       >
         <Typography variant="h6">
-          Creating a Memory
+        Creating a Memory
         </Typography>
         <TextField
           name="creator"
