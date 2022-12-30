@@ -7,13 +7,13 @@ import postRoutes from './routes/posts.js';
 
 const app = express();
 
-// All the rootes of thge posts.js will be execute
-app.use('/posts', postRoutes);
-
 // Setting body parser for sending request properly
 app.use(bodyParser.json({ limit: '30mb', extended: true }));
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
 app.use(cors());
+
+// All the rootes of thge posts.js will be execute
+app.use('/posts', postRoutes);
 
 /* MONGOOS setup */
 const CONNECTION_URL =
